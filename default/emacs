@@ -1,0 +1,17 @@
+; ~/.emacs.d/init.el
+
+(setq user-mail-address "chris@rorvick.com")
+
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-message t)
+
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+
+(setq c-default-style "linux"
+      c-basic-offset 8
+      tab-width 8
+      indent-tabs-mode t)
+
+(add-hook 'c-mode-common-hook '(lambda () (c-toggle-auto-state 1)))
+
