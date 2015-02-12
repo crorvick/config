@@ -1,0 +1,12 @@
+#!/bin/sh
+
+cd $(dirname $0)
+
+for f in default/*; do
+	dest=`sed -n '1s/.*~\/\([^ 	]*\)/\1/p' $f`
+	[ -n "$dest" ] || continue
+	dest="$HOME/$dest"
+	destdir=`dirname $dest`
+	[ -d $destdir ] || mkdir -p $destdir
+	[ -e $dest ] || ln -s $PWD/$f $dest
+done
