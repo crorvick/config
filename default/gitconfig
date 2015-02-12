@@ -1,0 +1,37 @@
+# ~/.gitconfig
+
+[user]
+	name = Chris Rorvick
+	email = chris@rorvick.com
+	signingkey = 763EA32E
+
+[advice]
+	pushNonFastForward = false
+	detachedHead = false
+
+[alias]
+	co = checkout
+	ci = commit
+	br = branch
+	ds = diff --stat
+	cp = cherry-pick
+	k = !gitk
+
+[color]
+	status = true
+
+[diff]
+	color = true
+	guitool = meld
+
+[difftool]
+	prompt = false
+
+[merge]
+	tool = meld
+
+[mergetool]
+	prompt = false
+
+[push]
+	default = simple
