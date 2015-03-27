@@ -1,12 +1,31 @@
-#!/bin/sh
+#!/bin/env python
 
-cd $(dirname $0)
+import sys, os
 
-for f in default/*; do
-	dest=`sed -n '1s/.*~\/\([^ 	]*\)/\1/p' $f`
-	[ -n "$dest" ] || continue
-	dest="$HOME/$dest"
-	destdir=`dirname $dest`
-	[ -d $destdir ] || mkdir -p $destdir
-	[ -e $dest ] || ln -s $PWD/$f $dest
-done
+def install_path(path):
+	f = open(path)
+	l = f.readline()
+	if not l:
+		return None
+	i = l.find("~/")
+	return l[i:].strip() if i >= 0 else None;
+
+base_dir = os.path.dirname(sys.argv[0])
+conf_dirs = [ 'default' ] + sys.argv[1:]
+
+configs = {}
+
+for d in conf_dirs:
+	for root, dirs, files in os.walk(os.path.join(base_dir, d)):
+		for f in files:
+			src = os.path.join(root, f)
+			dst = install_path(src)
+			configs[dst] = src
+
+for dst, src in configs.iteritems():
+	dst = os.path.expanduser(dst)
+	src = os.path.relpath(src, os.path.dirname(dst))
+	try:
+		os.symlink(src, dst)
+	except OSError, e:
+		print >>sys.stderr, 'error: %s -> %s (%s)' % (dst, src, e.strerror)
