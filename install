@@ -23,9 +23,17 @@ for d in conf_dirs:
 			configs[dst] = src
 
 for dst, src in configs.iteritems():
-	dst = os.path.expanduser(dst)
-	src = os.path.relpath(src, os.path.dirname(dst))
+	expanded_dst = os.path.expanduser(dst)
+	if os.path.exists(expanded_dst):
+		print >>sys.stderr, 'file exists, skipping:', dst
+		continue
 	try:
-		os.symlink(src, dst)
-	except OSError, e:
-		print >>sys.stderr, 'error: %s -> %s (%s)' % (dst, src, e.strerror)
+		fin = open(src, 'r')
+		fout = open(expanded_dst, 'w')
+		while True:
+			line = fin.readline()
+			if not line:
+				break
+			fout.write(line)
+	except (OSError, IOError) as e:
+		print >>sys.stderr, 'error: %s => %s (%s)' % (src, dst, e.strerror)
