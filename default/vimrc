@@ -1,3 +1,4 @@
 " ~/.vimrc
 
 set textwidth=80
+set noswapfile
