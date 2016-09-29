@@ -3,12 +3,12 @@
 import sys, os
 
 def install_path(path):
-	f = open(path)
-	l = f.readline()
-	if not l:
-		return None
-	i = l.find("~/")
-	return l[i:].strip() if i >= 0 else None;
+    f = open(path)
+    l = f.readline()
+    if not l:
+        return None
+    i = l.find("~/")
+    return l[i:].strip() if i >= 0 else None;
 
 base_dir = os.path.dirname(sys.argv[0])
 conf_dirs = [ 'default' ] + sys.argv[1:]
@@ -16,24 +16,24 @@ conf_dirs = [ 'default' ] + sys.argv[1:]
 configs = {}
 
 for d in conf_dirs:
-	for root, dirs, files in os.walk(os.path.join(base_dir, d)):
-		for f in files:
-			src = os.path.join(root, f)
-			dst = install_path(src)
-			configs[dst] = src
+    for root, dirs, files in os.walk(os.path.join(base_dir, d)):
+        for f in files:
+            src = os.path.join(root, f)
+            dst = install_path(src)
+            configs[dst] = src
 
 for dst, src in configs.iteritems():
-	expanded_dst = os.path.expanduser(dst)
-	if os.path.exists(expanded_dst):
-		print >>sys.stderr, 'file exists, skipping:', dst
-		continue
-	try:
-		fin = open(src, 'r')
-		fout = open(expanded_dst, 'w')
-		while True:
-			line = fin.readline()
-			if not line:
-				break
-			fout.write(line)
-	except (OSError, IOError) as e:
-		print >>sys.stderr, 'error: %s => %s (%s)' % (src, dst, e.strerror)
+    expanded_dst = os.path.expanduser(dst)
+    if os.path.exists(expanded_dst):
+        print >>sys.stderr, 'file exists, skipping:', dst
+        continue
+    try:
+        fin = open(src, 'r')
+        fout = open(expanded_dst, 'w')
+        while True:
+            line = fin.readline()
+            if not line:
+                break
+            fout.write(line)
+    except (OSError, IOError) as e:
+        print >>sys.stderr, 'error: %s => %s (%s)' % (src, dst, e.strerror)
