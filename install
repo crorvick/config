@@ -1,5 +1,7 @@
 #!/bin/env python
 
+from __future__ import print_function
+
 import sys, os
 
 def install_path(path):
@@ -22,10 +24,10 @@ for d in conf_dirs:
             dst = install_path(src)
             configs[dst] = src
 
-for dst, src in configs.iteritems():
+for dst, src in configs.items():
     expanded_dst = os.path.expanduser(dst)
     if os.path.exists(expanded_dst):
-        print >>sys.stderr, 'file exists, skipping:', dst
+        print('file exists, skipping: %s' % dst, file=sys.stderr)
         continue
     try:
         fin = open(src, 'r')
@@ -36,4 +38,4 @@ for dst, src in configs.iteritems():
                 break
             fout.write(line)
     except (OSError, IOError) as e:
-        print >>sys.stderr, 'error: %s => %s (%s)' % (src, dst, e.strerror)
+        print('error: %s => %s (%s)' % (src, dst, e.strerror), file=sys.stderr)
