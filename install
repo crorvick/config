@@ -5,12 +5,12 @@ from __future__ import print_function
 import sys, os
 
 def install_path(path):
-    f = open(path)
-    l = f.readline()
-    if not l:
-        return None
-    i = l.find("~/")
-    return l[i:].strip() if i >= 0 else None;
+    with open(path) as f:
+        l = f.readline()
+        if not l:
+            return None
+        i = l.find("~/")
+        return l[i:].strip() if i >= 0 else None;
 
 base_dir = os.path.dirname(sys.argv[0])
 conf_dirs = [ 'default' ] + sys.argv[1:]
@@ -30,12 +30,11 @@ for dst, src in configs.items():
         print('file exists, skipping: %s' % dst, file=sys.stderr)
         continue
     try:
-        fin = open(src, 'r')
-        fout = open(expanded_dst, 'w')
-        while True:
-            line = fin.readline()
-            if not line:
-                break
-            fout.write(line)
+        with open(src) as fin, open(expanded_dst, 'w') as fout:
+            while True:
+                line = fin.readline()
+                if not line:
+                    break
+                fout.write(line)
     except (OSError, IOError) as e:
         print('error: %s => %s (%s)' % (src, dst, e.strerror), file=sys.stderr)
