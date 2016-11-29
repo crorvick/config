@@ -49,6 +49,13 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;;
+;; add MELPA to package repositories
+;;
+
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+
+;;
 ;; load site-specific config
 ;;
 
