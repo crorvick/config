@@ -1,7 +1,5 @@
 ; ~/.emacs.d/init.el
 
-(setq user-mail-address "chris@rorvick.com")
-
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
@@ -15,3 +13,10 @@
 
 (add-hook 'c-mode-common-hook '(lambda () (c-toggle-auto-state 1)))
 
+;;
+;; load site-specific config
+;;
+
+(let ((site-init (expand-file-name "~/.emacs.d/site-init.el")))
+  (if (file-exists-p site-init)
+      (load-file site-init)))

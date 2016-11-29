@@ -1,0 +1,3 @@
+; ~/.emacs.d/site-init.el
+
+(setq user-mail-address "chris@rorvick.com")
