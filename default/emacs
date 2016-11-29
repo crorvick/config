@@ -43,6 +43,12 @@
       compilation-auto-jump-to-first-error t)
 
 ;;
+;; magit
+;;
+
+(global-set-key (kbd "C-x g") 'magit-status)
+
+;;
 ;; load site-specific config
 ;;
 
