@@ -20,6 +20,22 @@
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 
+;;
+;; cc-mode
+;;
+
+(defun my-recompile-or-compile ()
+  "Call recompile if defined, otherwise compile"
+  (interactive)
+  (if (fboundp 'recompile)
+      (call-interactively 'recompile)
+    (call-interactively 'compile)))
+
+(add-hook 'c-initialization-hook
+	  '(lambda ()
+	     (define-key c-mode-base-map (kbd "<f5>")    'my-recompile-or-compile)
+	     (define-key c-mode-base-map (kbd "<S-f5>")  'compile)
+	     (define-key c-mode-base-map (kbd "<f6>")    'gdb)))
 
 (add-hook 'c-mode-common-hook '(lambda () (c-toggle-auto-state 1)))
 
