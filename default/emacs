@@ -16,6 +16,8 @@
 
 (setq make-backup-files nil)
 
+(show-paren-mode t)
+
 ;;
 ;; org-mode
 ;;
