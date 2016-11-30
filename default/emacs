@@ -12,7 +12,8 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
-(setq-default indicate-empty-lines t)
+(setq-default indicate-empty-lines t
+	      show-trailing-whitespace t)
 
 (setq make-backup-files nil)
 
