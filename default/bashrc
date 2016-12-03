@@ -35,3 +35,5 @@ if [ -r '/usr/share/git/git-prompt.sh' ]; then
 	GIT_PS1_SHOWUPSTREAM='auto'
 	GIT_PS1_SHOWCOLORHINTS=1
 fi
+
+alias e="emacsclient -t -a ''"
