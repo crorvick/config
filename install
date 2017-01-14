@@ -14,6 +14,11 @@ def install_path(path):
 
 base_dir = os.path.dirname(sys.argv[0])
 conf_dirs = [ 'default' ] + sys.argv[1:]
+install_dir = os.path.join(base_dir, '.installed')
+
+if not os.path.exists(install_dir):
+    print('Creating install directory: {}'.format(install_dir), file=sys.stderr)
+    os.mkdir(install_dir)
 
 configs = {}
 
@@ -25,16 +30,29 @@ for d in conf_dirs:
             configs[dst] = src
 
 for dst, src in configs.items():
-    expanded_dst = os.path.expanduser(dst)
-    if os.path.exists(expanded_dst):
-        print('file exists, skipping: %s' % dst, file=sys.stderr)
-        continue
+
+    file_name = os.path.basename(src)
+    installed_path = os.path.join(install_dir, file_name)
+
     try:
-        with open(src) as fin, open(expanded_dst, 'w') as fout:
+        with open(src) as fin, open(installed_path, 'w') as fout:
             while True:
                 line = fin.readline()
                 if not line:
                     break
                 fout.write(line)
     except (OSError, IOError) as e:
-        print('error: %s => %s (%s)' % (src, dst, e.strerror), file=sys.stderr)
+        msg = 'cannot install file: {} ({})'.format(file_name, e.strerror)
+        print('error: {}'.format(msg), file=sys.stderr)
+
+    expanded_dst = os.path.expanduser(dst)
+    if not os.path.lexists(expanded_dst):
+        try:
+            dst_dir = os.path.dirname(expanded_dst)
+            if not os.path.exists(dst_dir):
+                os.makedirs(dst_dir)
+            installed_path = os.path.relpath(installed_path, dst_dir)
+            os.symlink(installed_path, expanded_dst)
+        except (OSError, IOError) as e:
+            msg = 'cannot link {} => {} ({})'.format(src, dst, e.strerror)
+            print('error: {}'.format(msg), file=sys.stderr)
