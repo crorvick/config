@@ -56,3 +56,6 @@ for dst, src in configs.items():
         except (OSError, IOError) as e:
             msg = 'cannot link {} => {} ({})'.format(src, dst, e.strerror)
             print('error: {}'.format(msg), file=sys.stderr)
+    elif not os.path.islink(expanded_dst):
+        msg = 'leaving unmanaged config {}'.format(dst)
+        print('warning: {}'.format(msg), file=sys.stderr)
