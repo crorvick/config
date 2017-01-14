@@ -27,7 +27,11 @@ for d in conf_dirs:
         for f in files:
             src = os.path.join(root, f)
             dst = install_path(src)
-            configs[dst] = src
+            if dst:
+                configs[dst] = src
+            else:
+                msg = "Could not find destination for {}".format(src)
+                print('error: {}'.format(msg), file=sys.stderr)
 
 for dst, src in configs.items():
 
