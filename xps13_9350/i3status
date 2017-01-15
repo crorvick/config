@@ -1,0 +1,47 @@
+# ~/.config/i3status/config
+
+general {
+	output_format = "i3bar"
+	colors = true
+	interval = 1
+}
+
+order += "disk /"
+order += "disk /home"
+order += "load"
+order += "run_watch DHCP"
+order += "wireless wlp58s0"
+order += "battery 0"
+order += "tztime local"
+
+wireless wlp58s0 {
+	format_up = "W: (%quality at %essid, %bitrate) %ip"
+	format_down = "W: down"
+}
+
+battery 0 {
+	format = "%status %percentage"
+	path = "/sys/class/power_supply/BAT%d/uevent"
+	low_threshold = 10
+	last_full_capacity = true
+}
+
+run_watch DHCP {
+	pidfile = "/var/run/dhcpcd.pid"
+}
+
+tztime local {
+	format = "%Y-%m-%d %H:%M:%S"
+}
+
+load {
+	format = "%5min"
+}
+
+disk "/" {
+	format = "/: %free"
+}
+
+disk "/home" {
+	format = "/home: %free"
+}

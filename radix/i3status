@@ -1,0 +1,40 @@
+# ~/.config/i3status/config
+
+general {
+	output_format = "i3bar"
+	colors = true
+	interval = 1
+}
+
+order += "disk /"
+order += "disk /home"
+order += "disk /scratch"
+order += "load"
+order += "ethernet eno2"
+order += "tztime local"
+
+ethernet eno2 {
+        # if you use %speed, i3status requires the cap_net_admin capability
+	format_up = "E: %ip (%speed)"
+	format_down = "E: down"
+}
+
+tztime local {
+	format = "%Y-%m-%d %H:%M:%S"
+}
+
+load {
+	format = "%5min"
+}
+
+disk "/" {
+	format = "/: %free"
+}
+
+disk "/home" {
+	format = "/home: %free"
+}
+
+disk "/scratch" {
+	format = "/scratch: %free"
+}
