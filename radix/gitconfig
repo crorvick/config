@@ -1,0 +1,39 @@
+# ~/.gitconfig
+
+[user]
+	name = Chris Rorvick
+	email = crorvick@radix.trade
+
+[advice]
+	pushNonFastForward = false
+	detachedHead = false
+
+[alias]
+	co = checkout
+	ci = commit
+	br = branch
+	ds = diff --stat
+	cp = cherry-pick
+	k = !gitk
+
+[color]
+	status = true
+
+[diff]
+	color = true
+	guitool = meld
+
+[difftool]
+	prompt = false
+
+[merge]
+	tool = meld
+
+[mergetool]
+	prompt = false
+
+[push]
+	default = simple
+
+[core]
+	pager = less -F -X
