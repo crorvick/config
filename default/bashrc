@@ -19,8 +19,17 @@ fi
 
 # Put your fun stuff here.
 
-if [ -r '/usr/share/git/git-prompt.sh' ]; then
-	source '/usr/share/git/git-prompt.sh'
+git_prompt_files="
+/usr/share/git-core/contrib/completion/git-prompt.sh
+/usr/share/git/git-prompt.sh
+"
+
+for git_prompt_file in $git_prompt_files; do
+	[ -f $git_prompt_file ] && break
+done
+
+if [ -r $git_prompt_file ]; then
+	source $git_prompt_file
 	prompt_command () {
 		local ps1_start='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[00m\]'
 		local ps1_end=' \$ '
