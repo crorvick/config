@@ -1,0 +1,13 @@
+# ~/.build_settings
+
+should_run_in_background=0
+
+phase_1_target='sanitize-debug'
+phase_2_targets='release'
+
+DISTCC_HOSTS="
+ distcc-centos-01/50:3633
+ distcc-centos-02/50:3633
+ distcc-centos-03/50:3633
+ distcc-centos-04/50:3633
+"
