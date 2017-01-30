@@ -26,6 +26,9 @@
 [difftool]
 	prompt = false
 
+[pull]
+	rebase = true
+
 [merge]
 	tool = meld
 
