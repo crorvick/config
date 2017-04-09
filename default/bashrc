@@ -19,6 +19,8 @@ fi
 
 # Put your fun stuff here.
 
+[ -z "$SSH_AGENT_PID" ] && eval $(ssh-agent | grep -v '^echo')
+
 git_prompt_files="
 /usr/share/git-core/contrib/completion/git-prompt.sh
 /usr/share/git/git-prompt.sh
