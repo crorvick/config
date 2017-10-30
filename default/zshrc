@@ -1,0 +1,25 @@
+# ~/.zshrc
+
+alias e="emacsclient -t -a ''"
+
+export ZSH="$HOME/.oh-my-zsh"
+if [ -d "$ZSH" ]; then
+	ZSH_THEME="jonathan"
+	DISABLE_UNTRACKED_FILES_DIRTY="true"
+	plugins=(git)
+
+	. "$ZSH/oh-my-zsh.sh"
+fi
+
+if [ -z "$SSH_AUTH_SOCK" -a -f "$HOME/.ssh/agent" ]; then
+	source "$HOME/.ssh/agent"
+fi
+
+if [ -z "$SSH_AUTH_SOCK" -o ! -e "$SSH_AUTH_SOCK" ]; then
+	ssh-agent | grep -v '^echo' >"$HOME/.ssh/agent"
+	source "$HOME/.ssh/agent"
+fi
+
+if [ -f "$HOME/.zshrc-site" ]; then
+	source "$HOME/.zshrc-site"
+fi

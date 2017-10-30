@@ -1,0 +1,6 @@
+# ~/.zpath
+
+# this would be weird, but just in case ...
+[ -z "$PATH" ] && PATH='/usr/bin:/bin'
+
+PATH="$HOME/.local/bin:$HOME/bin:$PATH"

@@ -1,0 +1,5 @@
+# ~/.zshrc-site
+
+if [[ $SHLVL == 1 ]]; then
+	module load docker/engine
+fi

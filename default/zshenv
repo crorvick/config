@@ -1,0 +1,7 @@
+# ~/.zshenv
+
+if [[ $SHLVL == 1 ]]; then
+	source .zpath
+fi
+
+export EDITOR="emacsclient -t -a ''"
