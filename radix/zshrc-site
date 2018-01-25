@@ -1,5 +1,0 @@
-# ~/.zshrc-site
-
-if [[ "$TERM" == 'rxvt-unicode-256color' ]]; then
-	TERM='rxvt-256color'
-fi

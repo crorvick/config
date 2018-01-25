@@ -35,6 +35,7 @@ XTerm*renderFont:         true
 XTerm*faceName:           DejaVu Sans Mono:antialias=false
 XTerm*faceSize:           12
 
+URxvt*termName:           urxvt-256color
 URxvt*font:               xft:DejaVu Sans Mono:antialias=false
 URxvt*transparent:        true
 URxvt*tintColor:          rgb:30/30/30
