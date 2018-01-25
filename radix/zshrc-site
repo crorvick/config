@@ -1,9 +1,5 @@
 # ~/.zshrc-site
 
-if [[ $SHLVL == 1 ]]; then
-	module load docker/engine
-fi
-
 if [[ "$TERM" == 'rxvt-unicode-256color' ]]; then
 	TERM='rxvt-256color'
 fi
