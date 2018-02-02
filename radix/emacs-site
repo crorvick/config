@@ -3,6 +3,7 @@
 (setq user-mail-address "chris.rovick@radix.trade")
 
 (setq org-agenda-files '("~/org"))
+(setq org-log-done t)
 
 (c-add-style "radix"
 	     '((c-basic-offset  . 4)
