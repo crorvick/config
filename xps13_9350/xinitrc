@@ -2,7 +2,7 @@
 
 [ -f $HOME/.Xresources ] && xrdb $HOME/.Xresources
 
-wallpaper="$HOME/wallpaper/pillars.png"
+wallpaper="$HOME/wallpaper/current.png"
 
 feh --bg-fill "$wallpaper"
 xautolock -time 5 -locker "i3lock -i '$wallpaper' -e -d" &
