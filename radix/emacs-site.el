@@ -1,9 +1,13 @@
-; ~/.emacs.d/site-init.el
+;; ~/.emacs.d/site-init.el
 
 (setq user-mail-address "chris.rovick@radix.trade")
 
 (setq org-agenda-files '("~/org"))
 (setq org-log-done t)
+
+(require 'clang-format)
+(global-set-key (kbd "M-<tab>") 'clang-format-region)
+(global-set-key (kbd "<f12>") 'clang-format-buffer)
 
 (c-add-style "radix"
 	     '((c-basic-offset  . 4)
