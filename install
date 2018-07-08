@@ -4,6 +4,9 @@ from __future__ import print_function
 
 import sys, os
 
+def ignore_path(path):
+    return path.endswith('~')
+
 def install_path(path):
     with open(path) as f:
         l = f.readline()
@@ -25,6 +28,8 @@ configs = {}
 for d in conf_dirs:
     for root, dirs, files in os.walk(os.path.join(base_dir, d)):
         for f in files:
+            if ignore_path(f):
+                continue
             src = os.path.join(root, f)
             dst = install_path(src)
             if dst:
