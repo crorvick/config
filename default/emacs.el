@@ -89,6 +89,7 @@
 
 (add-hook 'c-initialization-hook
 	  '(lambda ()
+	     (flyspell-prog-mode)
 	     (define-key c-mode-base-map (kbd "<f5>") 'my-recompile-or-compile)
 	     (define-key c-mode-base-map (kbd "S-<f5>") 'compile)
 	     (define-key c-mode-base-map (kbd "<f6>") 'gdb)))
@@ -99,6 +100,16 @@
 
 (setq compilation-scroll-output 'first-error
       compilation-auto-jump-to-first-error t)
+
+;;
+;; magit - A Git porcelain inside Emacs.
+;;
+
+(require 'magit)
+
+(add-hook 'git-commit-setup-hook
+	  '(lambda()
+	     (git-commit-turn-on-flyspell)))
 
 ;;
 ;; elpy - Emacs Python Development Environment
