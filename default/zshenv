@@ -5,3 +5,4 @@ if [[ $SHLVL == 1 ]]; then
 fi
 
 export EDITOR="emacsclient -t -a ''"
+export VISUAL="$EDITOR"

@@ -11,3 +11,4 @@ PATH=$HOME/.local/bin:$HOME/bin:$PATH
 export PATH
 
 export EDITOR="emacsclient -t -a ''"
+export VISUAL="$EDITOR"
