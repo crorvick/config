@@ -12,23 +12,22 @@
 ;; global settings
 ;;
 
-(setq user-full-name "Chris Rorvick")
+(setq-default user-full-name "Chris Rorvick")
 
-(setq inhibit-splash-screen t
-      inhibit-startup-message t
-      initial-scratch-message nil
-      initial-major-mode 'org-mode)
+(setq-default initial-major-mode 'org-mode)
 
-(setq column-number-mode t)
+(setq-default inhibit-splash-screen t
+	      inhibit-startup-message t
+	      initial-scratch-message nil
+	      make-backup-files nil
+	      column-number-mode t
+	      indicate-empty-lines t
+	      show-trailing-whitespace t
+	      require-final-newline t
+	      fill-column 73)
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-
-(setq-default indicate-empty-lines t
-	      show-trailing-whitespace t
-	      require-final-newline t)
-
-(setq make-backup-files nil)
 
 (show-paren-mode t)
 
