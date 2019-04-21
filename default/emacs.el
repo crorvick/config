@@ -33,6 +33,12 @@
 (show-paren-mode t)
 
 ;;
+;; default theme
+;;
+
+(load-theme 'tango-dark)
+
+;;
 ;; global key bindings
 ;;
 
